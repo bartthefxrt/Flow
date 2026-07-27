@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flow — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">F</span>
+      <span>Flow</span>
+    </div>
+    <a class="nav-link active" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-link " href="transactions.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Transactions
+    </a>
+    <a class="nav-link " href="budgeting.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+      Budgeting
+    </a>
+    <a class="nav-link " href="goals.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+      Goals
+    </a>
+    <a class="nav-link " href="analytics.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9"/><path d="M12 19V5"/><path d="M20 19v-7"/></svg>
+      Analytics
+    </a>
+    <a class="nav-link " href="settings.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Here's where your money stands today.</p>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-primary" id="add-transaction-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Transaction
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="card balance-card">
+        <div class="balance-top">
+          <div>
+            <p class="eyebrow">Total balance</p>
+            <h2 class="balance-value mono" id="balance-value">$0</h2>
+            <p class="balance-sub" id="balance-sub"></p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="card stat-card">
+            <div class="stat-icon income"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 7 7 17"/><path d="M7 7v10h10"/></svg></div>
+            <p class="eyebrow">Income this month</p>
+            <h3 class="stat-value mono" id="stat-income">$0</h3>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon expense"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></div>
+            <p class="eyebrow">Expenses this month</p>
+            <h3 class="stat-value mono" id="stat-expenses">$0</h3>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon savings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></div>
+            <p class="eyebrow">Savings this month</p>
+            <h3 class="stat-value mono" id="stat-savings">$0</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="card span-7">
+          <div class="card-header"><h3>Spending by Category</h3><p style="color:var(--text-dim); font-size:12px;">This month</p></div>
+          <div class="chart-box"><canvas id="spend-chart"></canvas></div>
+        </div>
+        <div class="card span-5">
+          <div class="card-header"><h3>Recent Transactions</h3></div>
+          <div id="recent-list"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <div class="card-header"><h3>Ask About Your Budget</h3><p style="color:var(--text-dim); font-size:12px;">Powered by your OpenAI key (set in Settings)</p></div>
+        <div id="ai-chat-log" style="display:flex; flex-direction:column; gap:10px; max-height:280px; overflow-y:auto; margin-bottom:14px;"></div>
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="ai-chat-input" placeholder="e.g. Can I afford a $200 jacket this month?" style="flex:1; background:var(--panel); border:1px solid var(--border); border-radius:var(--radius-s); padding:10px 12px; color:var(--text); outline:none;" />
+          <button class="btn btn-primary" id="ai-chat-send">Ask</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay" hidden>
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Add Transaction</h3>
+      <button class="btn-icon" id="modal-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form id="txn-form">
+      <div class="type-toggle">
+        <button type="button" class="type-btn expense active" data-type="expense">Expense</button>
+        <button type="button" class="type-btn income" data-type="income">Income</button>
+      </div>
+      <div class="field">
+        <label for="txn-amount">Amount</label>
+        <input type="number" id="txn-amount" step="0.01" min="0" placeholder="0.00" required />
+      </div>
+      <div class="field">
+        <label for="txn-description">Description</label>
+        <input type="text" id="txn-description" placeholder="e.g. Trader Joe's" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="txn-category">Category</label>
+          <select id="txn-category"></select>
+        </div>
+        <div class="field">
+          <label for="txn-date">Date</label>
+          <input type="date" id="txn-date" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for="txn-notes">Notes</label>
+        <textarea id="txn-notes" rows="2" placeholder="Optional notes…"></textarea>
+      </div>
+      <div class="field">
+        <button type="button" class="btn btn-secondary" id="txn-ai-btn" style="width:100%; justify-content:center;">Ask AI: is this a good amount?</button>
+        <p id="txn-ai-tip" style="font-size:12.5px; color:var(--text-dim); margin-top:6px;"></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
