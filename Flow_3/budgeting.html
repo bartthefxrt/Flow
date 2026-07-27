@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flow — Budgeting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/budgeting.css" />
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">F</span>
+      <span>Flow</span>
+    </div>
+    <a class="nav-link " href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-link " href="transactions.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Transactions
+    </a>
+    <a class="nav-link active" href="budgeting.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+      Budgeting
+    </a>
+    <a class="nav-link " href="goals.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+      Goals
+    </a>
+    <a class="nav-link " href="analytics.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9"/><path d="M12 19V5"/><path d="M20 19v-7"/></svg>
+      Analytics
+    </a>
+    <a class="nav-link " href="settings.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1 class="page-title">Budgeting</h1>
+        <p class="page-subtitle">Track only the categories that match your spending.</p>
+      </div>
+      <button class="btn btn-primary" id="add-category-btn">+ Add Category</button>
+    </header>
+
+    <main class="content">
+      <div class="card summary-strip">
+        <div><p class="eyebrow">Total budgeted</p><h3 class="mono" id="total-budgeted">$0</h3></div>
+        <div><p class="eyebrow">Total spent</p><h3 class="mono" id="total-spent">$0</h3></div>
+        <div><p class="eyebrow">Remaining</p><h3 class="mono" id="total-remaining">$0</h3></div>
+      </div>
+
+      <div class="budgets-grid" id="budgets-grid"></div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="edit-modal-overlay" hidden>
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-header">
+      <h3 id="edit-modal-title">Add Category</h3>
+      <button class="btn-icon" id="edit-modal-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form id="edit-form">
+      <input type="hidden" id="edit-cat-key" />
+      <div class="field">
+        <label for="edit-cat-name">Category name</label>
+        <input type="text" id="edit-cat-name" placeholder="e.g. Subscriptions" required maxlength="24" />
+      </div>
+      <div class="field">
+        <label>Color</label>
+        <div class="color-swatches" id="edit-color-swatches"></div>
+      </div>
+      <div class="field">
+        <label for="edit-amount">Monthly limit</label>
+        <input type="number" id="edit-amount" min="0" step="1" required />
+      </div>
+      <div class="modal-actions" id="edit-modal-actions">
+        <button type="button" class="btn btn-danger" id="edit-delete" hidden>Delete</button>
+        <span style="flex:1"></span>
+        <button type="button" class="btn btn-ghost" id="edit-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/budgeting.js"></script>
+</body>
+</html>

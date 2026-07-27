@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flow — Settings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/settings.css" />
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">F</span>
+      <span>Flow</span>
+    </div>
+    <a class="nav-link " href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a class="nav-link " href="transactions.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Transactions
+    </a>
+    <a class="nav-link " href="budgeting.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+      Budgeting
+    </a>
+    <a class="nav-link " href="goals.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+      Goals
+    </a>
+    <a class="nav-link " href="analytics.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9"/><path d="M12 19V5"/><path d="M20 19v-7"/></svg>
+      Analytics
+    </a>
+    <a class="nav-link active" href="settings.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1 class="page-title">Settings</h1>
+        <p class="page-subtitle">Currency, appearance, and your data.</p>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="settings-grid">
+        <div class="card">
+          <h3>AI Assistant</h3>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">OpenAI API key</p>
+              <p class="settings-desc">Used for budget chat and smart suggestions. Stored only in this browser, never sent anywhere but OpenAI.</p>
+            </div>
+          </div>
+          <div class="field" style="margin-top:4px;">
+            <input type="password" id="openai-key" placeholder="sk-..." autocomplete="off" />
+          </div>
+          <button class="btn btn-secondary" id="save-key-btn">Save Key</button>
+        </div>
+
+        <div class="card">
+          <h3>Appearance</h3>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Theme</p>
+              <p class="settings-desc">Switch between dark and light.</p>
+            </div>
+            <button class="toggle-switch" id="theme-toggle"><span class="knob"></span></button>
+          </div>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Color theme</p>
+              <p class="settings-desc">Pick an accent color for the whole site.</p>
+            </div>
+            <div class="theme-swatches" id="color-theme-swatches">
+              <button class="theme-swatch" data-theme="blue" style="background:#6C7CFF" title="Slate Blue"></button>
+              <button class="theme-swatch" data-theme="violet" style="background:#8B5CF6" title="Violet"></button>
+              <button class="theme-swatch" data-theme="emerald" style="background:#10B981" title="Emerald"></button>
+              <button class="theme-swatch" data-theme="sunset" style="background:#FB923C" title="Sunset"></button>
+              <button class="theme-swatch" data-theme="rose" style="background:#FB7185" title="Rose"></button>
+              <button class="theme-swatch" data-theme="cyan" style="background:#22D3EE" title="Cyan"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Currency</h3>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Display currency</p>
+              <p class="settings-desc">Symbol shown across the site.</p>
+            </div>
+            <select class="select" id="currency-select">
+              <option value="USD">USD — $</option>
+              <option value="EUR">EUR — €</option>
+              <option value="GBP">GBP — £</option>
+              <option value="JPY">JPY — ¥</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Data</h3>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Export CSV</p>
+              <p class="settings-desc">Download all transactions as a spreadsheet.</p>
+            </div>
+            <button class="btn btn-secondary" id="export-csv-btn">Export</button>
+          </div>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Export backup</p>
+              <p class="settings-desc">Download a full JSON snapshot of Flow.</p>
+            </div>
+            <button class="btn btn-secondary" id="export-json-btn">Export</button>
+          </div>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Import backup</p>
+              <p class="settings-desc">Load a previously saved JSON snapshot.</p>
+            </div>
+            <label class="btn btn-secondary file-btn">Import<input type="file" id="import-input" accept="application/json" hidden /></label>
+          </div>
+          <div class="settings-row">
+            <div>
+              <p class="settings-label">Reset website data</p>
+              <p class="settings-desc">Erase everything and start fresh.</p>
+            </div>
+            <button class="btn btn-danger" id="reset-btn">Reset</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/settings.js"></script>
+</body>
+</html>
